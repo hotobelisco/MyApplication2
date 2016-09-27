@@ -35,9 +35,8 @@ public class HistoricalDataActivity extends Fragment {
     }
 
     protected void initializeLineChart(){
-        
+
         LineChart lineChart = (LineChart) this.getView().findViewById(R.id.line_chart_historical);
-        //System.out.println( != null);
 
         LineDataSet lineDataSet = new LineDataSet(getData(),"Algo VS Algo");
 

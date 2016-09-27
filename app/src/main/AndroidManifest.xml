@@ -9,9 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" />
-        <activity
             android:name=".NavigationDrawerActivity"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar">
@@ -21,8 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity" />
-        <activity android:name=".HistoricalDataActivity"></activity>
+        <activity
+            android:name=".HistoricalDataActivity"
+            android:parentActivityName=".NavigationDrawerActivity" />
+        <activity
+            android:name=".MainScreenActivity"
+            android:parentActivityName=".NavigationDrawerActivity" />
+        <activity android:name=".ContaminantDetailActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>

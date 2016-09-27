@@ -1,6 +1,5 @@
 package com.example.jekot.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,17 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +24,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +33,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -54,23 +44,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-    /*
-        PieChart chart = (PieChart) findViewById(R.id.chart_2);
 
-        List<PieEntry> arr = new ArrayList<>();
-        arr.add(new PieEntry(40.0f, "Pato"));
-        arr.add(new PieEntry(35.0f, "Pollo"));
-        arr.add(new PieEntry(25.0f, "Puerco"));
-
-        PieDataSet ps = new PieDataSet(arr, "Saludos, jaja");
-        ps.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        ps.setValueTextSize(25f);
-        PieData pd = new PieData(ps);
-        chart.setDescription("");
-        chart.setData(pd);
-        chart.invalidate();
-        */
     }
 
     @Override
@@ -112,16 +86,24 @@ public class NavigationDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         Fragment frag = null;
+
         if (id == R.id.nav_dashboard) {
-            System.out.println("asdasd");
+            frag = new MainScreenActivity();
+
+        }
+        else if(id == R.id.nav_por_fecha){
             frag = new HistoricalDataActivity();
+        }
+        else if(id == R.id.nav_about){
+            frag = new ContaminantDetailActivity();
+            ((ContaminantDetailActivity) frag).arbitraryInt = 1222;
+
+        }
+
+        if(frag != null){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_navigation_drawer,frag)
                     .commit();
-        } else if(id == R.id.nav_por_fecha){
-
-        } else if(id == R.id.nav_about){
-            System.out.println("About");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
